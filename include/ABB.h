@@ -126,6 +126,35 @@ class ABB{
     }
     return  false;
   }
+
+  int profundidad(){
+    std::queue<std::pair<NodoBB<T>*,int>> Cola;
+    int prof(0);
+    int niv_actual(0);
+    std::pair<NodoBB<T>*,int>  a(this->raiz_,0);
+    Cola.push(a);
+
+    while (!Cola.empty()) {
+      a = Cola.front();
+      Cola.pop();
+      if (a.second > niv_actual) {
+        niv_actual = a.second;
+        if (niv_actual > prof) {
+          prof = niv_actual;
+        }
+      }
+
+      if (a.first != nullptr) {
+        std::pair<NodoBB<T> *, int> b(a.first->getIzqcop(), a.second + 1);
+        Cola.push(b);
+        b.first = a.first->getDercop();
+        b.second = a.second + 1;
+        Cola.push(b);
+      }
+    }
+    return prof;
+  }
+
  private:
   NodoBB<T>** recorrer(NodoBB<T>** raiz,bool Izquirda = false){
     if(Izquirda){
@@ -149,6 +178,7 @@ class ABB{
       delete raiz;
     }
   }
+
 
 };
 

@@ -2,6 +2,8 @@
 #include "../include/ABB.h"
 #include "../include/DNI.h"
 int main() {
+  char clr[]="clear";
+  system(clr);
   std::cout << "Programa Modo Demostracion" << std::endl;
   ABB<DNI> Arbol;
   int opcion(0), Clave(0);
@@ -21,6 +23,7 @@ int main() {
         std::cout<<"Insertar :"<<Clave<<"\n";
           dni.setDni(Clave);
           Arbol.Insertar(dni);
+          system(clr);
           std::cout<<Arbol<<"\n";
         break;
       case 2:
@@ -29,9 +32,11 @@ int main() {
         std::cout<<"Eliminar :"<<Clave<<"\n";
         dni.setDni(Clave);
         Arbol.Eliminar(dni);
+        system(clr);
         std::cout<<Arbol<<"\n";
         break;
       default:
+        system(clr);
         std::cout << "Opcion no permitida\n";
     }
   }while(opcion!=0);

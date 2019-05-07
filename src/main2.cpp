@@ -6,13 +6,16 @@
 #include <time.h>
 #include <climits>
 int main() {
+  char clr[]="clear";
+  system(clr);
   srand(time(NULL));
   std::cout << "Programa Modo Estadistica" << std::endl;
   std::cout<<"Introduce el Tamaño del Arbol: ";
   int size,nPruebas;
   std::cin>>size;
-  std::cout<<"Introduce el numero de pruebas: ";
+  std::cout<<"Introduce el Numero de Pruebas: ";
   std::cin>>nPruebas;
+  system(clr);
   std::vector<DNI> banco_pb;
   for (int i = 0; i <2*size ; ++i) {
     DNI aux(rand()%100000000);
@@ -51,9 +54,9 @@ int main() {
     }
   }
 std::cout<<"############  Numero de Comparaciones ############\n"
-           "\t\t\tN\t\tPruebas\t\tMinimo\t\tMedio\t\tMaximo\n"
-           "Busqueda\t"<<size<<"\t\t"<<nPruebas<<"\t\t\t"<<minBus<<"\t\t\t"<<acumuladorBus/nPruebas<<"\t\t\t"<<maxBus<<"\n"
-           "Insercion\t"<<size<<"\t\t"<<nPruebas<<"\t\t\t"<<minIns<<"\t\t\t"<<acumuladorIns/nPruebas<<"\t\t\t"<<maxIns<<"\n"
+           "\t\t\tN\t\tPruebas\t\tMinimo\t\tMedio\t\t\tMaximo\t\tProfundidad\n"
+           "Busqueda\t"<<size<<"\t\t"<<nPruebas<<"\t\t\t"<<minBus<<"\t\t\t"<<acumuladorBus/nPruebas<<"\t\t\t"<<maxBus<<"\t\t\t"<<Arbol.profundidad()<<"\n"
+           "Insercion\t"<<size<<"\t\t"<<nPruebas<<"\t\t\t"<<minIns<<"\t\t\t"<<acumuladorIns/nPruebas<<"\t\t\t"<<maxIns<<"\t\t\t"<<Arbol.profundidad()<<"\n"
                                                                                          "";
   return 0;
 }
