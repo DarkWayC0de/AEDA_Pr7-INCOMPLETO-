@@ -9,7 +9,10 @@
 class DNI {
  private:
   long long int DNI_;
+  static int contador_;
  public:
+  int getContador();
+  void setContador(int contador=0);
   void setDni(long long int dni);
  public:
   DNI();
