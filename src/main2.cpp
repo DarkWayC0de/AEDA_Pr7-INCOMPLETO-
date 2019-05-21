@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/ABB.h"
+#include "../include/AVL.h"
 #include "../include/DNI.h"
 #include <vector>
 #include <stdlib.h>
@@ -22,7 +22,7 @@ int main() {
     banco_pb.push_back(aux);
   }
 
-  ABB<DNI> Arbol;
+  AVL<DNI> Arbol;
   for (int j = 0; j <size ; ++j) {
     Arbol.Insertar(banco_pb[j]);
   }
@@ -55,8 +55,8 @@ int main() {
   }
 std::cout<<"############  Numero de Comparaciones ############\n"
            "\t\t\tN\t\tPruebas\t\tMinimo\t\tMedio\t\t\tMaximo\t\tProfundidad\n"
-           "Busqueda\t"<<size<<"\t\t"<<nPruebas<<"\t\t\t"<<minBus<<"\t\t\t"<<acumuladorBus/nPruebas<<"\t\t\t"<<maxBus<<"\t\t\t"<<Arbol.profundidad()<<"\n"
-           "Insercion\t"<<size<<"\t\t"<<nPruebas<<"\t\t\t"<<minIns<<"\t\t\t"<<acumuladorIns/nPruebas<<"\t\t\t"<<maxIns<<"\t\t\t"<<Arbol.profundidad()<<"\n"
+           "Busqueda\t"<<size<<"\t\t"<<nPruebas<<"\t\t\t"<<minBus<<"\t\t\t"<<acumuladorBus/nPruebas<<"\t\t\t"<<maxBus<<"\t\t\t"<<Arbol.Profundidad()<<"\n"
+           "Insercion\t"<<size<<"\t\t"<<nPruebas<<"\t\t\t"<<minIns<<"\t\t\t"<<acumuladorIns/nPruebas<<"\t\t\t"<<maxIns<<"\t\t\t"<<Arbol.Profundidad()<<"\n"
                                                                                          "";
   return 0;
 }

@@ -18,7 +18,6 @@ class ABB{
 
  public:
   friend std::ostream &operator<<(std::ostream &os, const ABB &abb) {
-
     std::queue<std::pair<NodoBB<T>*,int>> Cola;
     int niv_actual(0);
     std::pair<NodoBB<T>*,int>  a(abb.raiz_,0);
@@ -60,6 +59,10 @@ class ABB{
   NodoBB<T> *getRaiz() const {
     return raiz_;
   }
+  NodoBB<T> **getpRaiz()  {
+    //NodoAVL<T>* A= dynamic_cast<NodoAVL<T>*>(raiz_);
+    return &raiz_;
+  }
 
   void setRaiz(NodoBB<T> *raiz) {
     raiz_ = raiz;
@@ -84,7 +87,7 @@ class ABB{
     }
   }
 
-  bool Insertar(T x){
+  virtual bool Insertar(T x){
    NodoBB<T>** aux= Buscar(x,&raiz_);
    if(*aux==nullptr){
      *aux=new NodoBB<T> (x);
@@ -92,10 +95,16 @@ class ABB{
    }
     return  false;
   }
+  bool Insertar(NodoBB<T> *x){
+    NodoBB<T>** aux= Buscar(x->getDato(),&raiz_);
+    if(*aux==nullptr){
+      *aux=x;
+      return true;
+    }
+    return  false;
+  }
 
-
-
-  bool Eliminar(T x){
+  virtual bool Eliminar(T x){
     NodoBB<T>** aux = Buscar(x,&raiz_);
     if(*aux!=nullptr){
       NodoBB<T>* izq =(**aux).getIzqcop();
@@ -126,12 +135,30 @@ class ABB{
     }
     return  false;
   }
+  int Altura(){
+    return Profundidad();
+  }
+  int Altura(NodoBB<T>* A){
+    if (A==nullptr)return 0;
+    if((A->getIzqcop()== nullptr)&&(A->getDercop()== nullptr)) return 1;
+    return std::max( Altura(A->getDercop()),Altura(A->getIzqcop()))+1;
+  }
+  int tamano(){
+    tamano(raiz_);
+  }
+  int tamano(NodoBB<T>* raiz){
+    return (raiz== nullptr)? 0:(1+tamano(raiz->getDercop())+tamano(raiz->getIzqcop()));
+  }
 
-  int profundidad(){
+  int Profundidad(){
+    return Profundidad(raiz_);
+  }
+
+  int Profundidad(NodoBB<T>* raiz){
     std::queue<std::pair<NodoBB<T>*,int>> Cola;
     int prof(0);
     int niv_actual(0);
-    std::pair<NodoBB<T>*,int>  a(this->raiz_,0);
+    std::pair<NodoBB<T>*,int>  a(raiz,0);
     Cola.push(a);
 
     while (!Cola.empty()) {

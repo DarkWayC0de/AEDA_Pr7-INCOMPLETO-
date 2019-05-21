@@ -1,11 +1,11 @@
 #include <iostream>
-#include "../include/ABB.h"
+#include "../include/AVL.h"
 #include "../include/DNI.h"
 int main() {
   char clr[]="clear";
   system(clr);
   std::cout << "Programa Modo Demostracion" << std::endl;
-  ABB<DNI> Arbol;
+  AVL<DNI> Arbol;
   int opcion(0), Clave(0);
   DNI dni;
   do {
